@@ -69,6 +69,9 @@ do_prepare() {
 
 do_build() {
   pushd src > /dev/null
+    # adding explicit TMPDIR because on some systems, like hab studio,
+    # the make.bash fails because it can't "mkdtemp" a temporary directory
+    export TMPDIR="/tmp"
     bash make.bash --no-clean
   popd > /dev/null
 }
